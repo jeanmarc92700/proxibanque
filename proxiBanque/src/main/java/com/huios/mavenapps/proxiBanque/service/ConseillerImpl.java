@@ -39,16 +39,16 @@ public class ConseillerImpl implements IConseiller{
 	 * La m�thode lireClient permet de lire les informations du client dans la base de donn�es
 	 */
 	@Override
-	public void lireClient(Client client) {
-		dao.lireClient(client);
+	public Client lireClient(int idClient) {
+		return dao.lireClient(idClient);
 	}
 	
 	/**
 	 * La m�thode modifierClient permet de modifier les informations du client dans la base de donn�es
 	 */
 	@Override
-	public void modifierClient(Client client) {
-		dao.modifierClient(client);
+	public void modifierClient(String adresse, int codePostal, String ville, String telephone, int idClient) {
+		dao.modifierClient(adresse, codePostal, ville, telephone, idClient);
 	}
 	
 	/**
@@ -56,8 +56,8 @@ public class ConseillerImpl implements IConseiller{
 	 */
 
 	@Override
-	public void suppressionClient(Compte compte, Carte carte) {
-		dao.suppressionClient(compte, carte);
+	public void suppressionClient(int idClient) {
+		dao.suppressionClient(idClient);
 	}
 	
 	/**

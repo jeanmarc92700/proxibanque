@@ -4,6 +4,7 @@ public class Compte {
 	
 	//Attributs
 	private int numCompte;
+	private int idCompte;
 	private float solde;
 	private String dateOuverture;
 	
@@ -19,31 +20,61 @@ public class Compte {
 	}
 
 	//Getters & Setters
+	
+	public int getIdCompte() {
+		return idCompte;
+	}
+
+	public void setIdCompte(int idCompte) {
+		this.idCompte = idCompte;
+	}
+	
 	public int getNumCompte() {
 		return numCompte;
 	}
+
 	public void setNumCompte(int numCompte) {
 		this.numCompte = numCompte;
 	}
+
 	public float getSolde() {
 		return solde;
 	}
-	public void setSolde(int solde) {
+
+	public void setSolde(float solde) {
 		this.solde = solde;
 	}
+
 	public String getDateOuverture() {
 		return dateOuverture;
 	}
+
 	public void setDateOuverture(String dateOuverture) {
 		this.dateOuverture = dateOuverture;
 	}
-	
-	//toString
-	@Override
-	public String toString() {
-		return "Compte [numCompte=" + numCompte + ", solde=" + solde + ", dateOuverture=" + dateOuverture + "]";
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Carte getCarte() {
+		return carte;
+	}
+
+	public void setCarte(Carte carte) {
+		this.carte = carte;
 	}
 	
+	//toString
+		@Override
+		public String toString() {
+			return "Compte [numCompte=" + numCompte + ", solde=" + solde + ", dateOuverture=" + dateOuverture + "]";
+		}
+
 	
 
 }

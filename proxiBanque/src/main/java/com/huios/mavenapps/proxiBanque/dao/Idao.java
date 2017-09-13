@@ -14,9 +14,9 @@ public interface Idao {
 	//Gestion des Clients
 	public void authentification(int id, int mdp);
 	public void creerClient(Client client);
-	public void lireClient(Client client);
-	public void modifierClient(Client client);
-	public void suppressionClient(Compte compte, Carte carte);
+	public Client lireClient(int idClient);
+	public void modifierClient(String adresse, int codePostal, String ville, String telephone, int idClient);
+	public void suppressionClient(int idClient);
 	
 	//Gestion des Comptes
 	
@@ -36,11 +36,14 @@ public interface Idao {
 	public void analyseCompte(Compte compte); //Aucun compte d�biteur
 	
 	//Gestion des Conseiller
-	public void creerConseiller(Conseiller conseiller);
+	public void creerConseiller(Employes employe);
 	public void lireConseiller(Conseiller conseiller);
 	public void modifierConseiller(Conseiller conseiller);
 	public void suppressionConseiller(Conseiller conseiller);
 	public void ajouteremployes(Employes e, Agence a);
+	
+	
+	
 	
 	
 

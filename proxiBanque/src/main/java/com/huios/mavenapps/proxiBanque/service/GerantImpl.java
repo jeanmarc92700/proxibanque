@@ -23,8 +23,8 @@ public class GerantImpl extends ConseillerImpl implements IGerant {
 	 * La m�thode creerConseiller permet de cr�er un conseiller dans la base de donn�e. 
 	 */
 	@Override
-	public void creerConseiller(Conseiller conseiller) {
-		dao.creerConseiller(conseiller);
+	public void creerConseiller(Employes employe) {
+		dao.creerConseiller(employe);
 	}
 	
 	/**

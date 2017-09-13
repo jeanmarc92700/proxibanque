@@ -1,6 +1,5 @@
 package com.huios.mavenapps.proxiBanque.service;
 
-import com.huios.mavenapps.proxiBanque.metier.Carte;
 import com.huios.mavenapps.proxiBanque.metier.Client;
 import com.huios.mavenapps.proxiBanque.metier.Compte;
 
@@ -11,9 +10,9 @@ public interface IConseiller {
 	//CLIENT
 	public void authentification(int id, int mdp);
 	public void creerClient(Client client);
-	public void lireClient(Client client);
-	public void modifierClient(Client client);
-	public void suppressionClient(Compte compte, Carte carte);
+	public Client lireClient(int idClient);
+	public void modifierClient(String adresse, int codePostal, String ville, String telephone, int idClient);
+	public void suppressionClient(int idClient);
 	
 	//COMPTE
 	public void creerCompte(Compte compte);
@@ -26,6 +25,9 @@ public interface IConseiller {
 	public int virementCompte(Compte compte1, Compte compte2);
 	public void simCreditImmo(Compte compte);
 	public void simCreditConso(Compte compte);
-	public void gestionPatrimoine(Compte compte); //Client fortun� >500 000�
+	public void gestionPatrimoine(Compte compte);
+	
+	
+	
 
 }

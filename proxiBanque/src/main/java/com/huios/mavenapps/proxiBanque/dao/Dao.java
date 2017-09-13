@@ -1,7 +1,13 @@
 package com.huios.mavenapps.proxiBanque.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
 import com.huios.mavenapps.proxiBanque.metier.Agence;
-import com.huios.mavenapps.proxiBanque.metier.Carte;
 import com.huios.mavenapps.proxiBanque.metier.Client;
 import com.huios.mavenapps.proxiBanque.metier.Compte;
 import com.huios.mavenapps.proxiBanque.metier.Conseiller;
@@ -16,42 +22,255 @@ public class Dao implements Idao {
 	
 	@Override
 	public void creerClient(Client client) {
-		System.out.println("CREATION d'un client !");		
+		try {
+			//CHARGEMENT DU PILOTE
+			Class.forName("com.mysql.jdbc.Driver");
+			//ADRESSE DE LA BDD
+			String adresse="jdbc:mysql://localhost:3306/proxibanque";
+			String login="root";
+			String mdp="";
+			//CONNEXION A LA BDD
+			Connection conn = DriverManager.getConnection(adresse, login, mdp);
+			//PREPARATION ET ENVOIE DE LA REQUETE
+			String requete ="INSERT INTO client (nom,prenom,adresse,codePostal,ville,telephone) VALUES (?,?,?,?,?,?)";
+			PreparedStatement ps= conn.prepareStatement(requete);
+			ps.setString(1,client.getNom());
+			ps.setString(2,client.getPrenom());
+			ps.setString(3, client.getAdresse());
+			ps.setInt(4,client.getCodePostal());
+			ps.setString(5,client.getVille());
+			ps.setString(6,client.getTelephone());
+		
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@Override
-	public void lireClient(Client client) {
-		System.out.println("LECTURE d'un client !");
+	public Client lireClient(int idClient) {
+		Client client = new Client();
+		try {
+			//CHARGEMENT DU PILOTE
+			Class.forName("com.mysql.jdbc.Driver");
+			//ADRESSE DE LA BDD
+			String adresse="jdbc:mysql://localhost:3306/proxibanque";
+			String login="root";
+			String mdp="";
+			//CONNEXION A LA BDD
+			Connection conn = DriverManager.getConnection(adresse, login, mdp);
+			//PREPARATION ET ENVOIE DE LA REQUETE
+			String requete ="SELECT * FROM client " +
+							"WHERE idClient=?";
+			PreparedStatement ps= conn.prepareStatement(requete);
+			ps.setInt(1, idClient);
+			
+			//RESULTATS
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+			client.setIdClient(rs.getInt(idClient));
+			client.setNom(rs.getString("nom"));
+			client.setPrenom(rs.getString("prenom"));
+			client.setAdresse(rs.getString("adresse"));
+			client.setCodePostal(rs.getInt("codePostal"));
+			client.setVille(rs.getString("ville"));
+			client.setTelephone(rs.getString("telephone"));
+			//System.out.println(client);
+			}
+			
+			ps.close();
+			conn.close();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return client;
+		
 	}
 
 	@Override
-	public void modifierClient(Client client) {
-		System.out.println("MODIFICATION d'un client !");
+	public void modifierClient(String adresse, int codePostal, String ville, String telephone, int idClient) {
+		try {
+			//CHARGEMENT DU PILOTE
+			Class.forName("com.mysql.jdbc.Driver");
+			//ADRESSE DE LA BDD
+			String ad="jdbc:mysql://localhost:3306/proxibanque";
+			String login="root";
+			String mdp="";
+			//CONNEXION A LA BDD 
+			Connection conn = DriverManager.getConnection(ad, login, mdp);
+			//PREPARATION ET ENVOIE DE LA REQUETE
+			String requete="UPDATE client SET adresse=?,codePostal=?,ville=?,telephone=?  "+
+			"where idClient=?";		
+			PreparedStatement ps= conn.prepareStatement(requete);
+			ps.setString(1,adresse);
+			ps.setInt(2,codePostal);
+			ps.setString(3,ville);
+			ps.setString(4,telephone);
+			ps.setInt(5,idClient);
+			ps.executeUpdate();
+			//LIBERATION DES RESSOURCES
+			ps.close();
+			conn.close();
+			} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			}
 	}
 	
 	@Override
-	public void suppressionClient(Compte compte, Carte carte) {
-		System.out.println("SUPPRESSION d'un client !");
+	public void suppressionClient(int idClient) {
+		try {
+			//CHARGEMENT DU PILOTE
+			Class.forName("com.mysql.jdbc.Driver");
+			//ADRESSE DE LA BDD
+			String adresse="jdbc:mysql://localhost:3306/proxibanque";
+			String login="root";
+			String mdp="";
+			//CONNEXION A LA BDD
+			Connection conn = DriverManager.getConnection(adresse, login, mdp);
+			//PREPARATION ET ENVOIE DE LA REQUETE
+			String requete="DELETE FROM client Where idClient=?";
+			PreparedStatement ps= conn.prepareStatement(requete);
+			ps.setInt(1,idClient);
+			ps.executeUpdate();
+			//LIBERATION DES RESSOURCES
+			ps.close();
+			conn.close();
+			} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+			}
 	}
 	
 	@Override
 	public void creerCompte(Compte compte) {
-		System.out.println("CREATION d'un compte !");
+		try {
+			//CHARGEMENT DU PILOTE
+			Class.forName("com.mysql.jdbc.Driver");
+			//ADRESSE DE LA BDD
+			String adresse="jdbc:mysql://localhost:3306/proxibanque";
+			String login="root";
+			String mdp="";
+			//CONNEXION A LA BDD
+			Connection conn = DriverManager.getConnection(adresse, login, mdp);
+			//PREPARATION ET ENVOIE DE LA REQUETE
+			String requete ="INSERT INTO compte (solde,dateOuverture,numeroCompte) VALUES (?,?,?,?)";
+			PreparedStatement ps= conn.prepareStatement(requete);
+			ps.setFloat(1,compte.getSolde());
+			ps.setString(2,compte.getDateOuverture());
+			ps.setInt(3, compte.getNumCompte());
+			
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@Override
 	public void lireCompte(Compte compte) {
-		System.out.println("LECTURE d'un compte !");
+		try {
+			//CHARGEMENT DU PILOTE
+			Class.forName("com.mysql.jdbc.Driver");
+			//ADRESSE DE LA BDD
+			String adresse="jdbc:mysql://localhost:3306/proxibanque";
+			String login="root";
+			String mdp="";
+			//CONNEXION A LA BDD
+			Connection conn = DriverManager.getConnection(adresse, login, mdp);
+			//PREPARATION ET ENVOIE DE LA REQUETE
+			String requete ="SELECT * FROM compte WHERE idCompte = ? ";
+			PreparedStatement ps= conn.prepareStatement(requete);
+			ps.setInt(1,compte.getIdCompte());
+		
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@Override
 	public void modifierCompte(Compte compte) {
-		System.out.println("MODIFICATION d'un compte !");
+		try {
+			//CHARGEMENT DU PILOTE
+			Class.forName("com.mysql.jdbc.Driver");
+			//ADRESSE DE LA BDD
+			String adresse="jdbc:mysql://localhost:3306/proxibanque";
+			String login="root";
+			String mdp="";
+			//CONNEXION A LA BDD 
+			Connection conn = DriverManager.getConnection(adresse, login, mdp);
+			//PREPARATION ET ENVOIE DE LA REQUETE
+			String requete="UPDATE compte SET solde =? "+
+			"where idCompte=?";		
+			PreparedStatement ps= conn.prepareStatement(requete); //prépare la requete
+			ps.setFloat(1,compte.getSolde()); 
+			ps.executeUpdate();
+			//LIBERATION DES RESSOURCES
+			ps.close();
+			conn.close();
+			} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			}
+		
 	}
 	
 	@Override
 	public void suppressionCompte(Compte compte) {
-		System.out.println("SUPPRESSION d'un compte !");
+		try {
+			//CHARGEMENT DU PILOTE
+			Class.forName("com.mysql.jdbc.Driver");
+			//ADRESSE DE LA BDD
+			String adresse="jdbc:mysql://localhost:3306/proxibanque";
+			String login="root";
+			String mdp="";
+			//CONNEXION A LA BDD
+			Connection conn = DriverManager.getConnection(adresse, login, mdp);
+			//PREPARATION ET ENVOIE DE LA REQUETE
+			String requete="DELETE FROM compte Where idCompte=?";
+			PreparedStatement ps= conn.prepareStatement(requete);
+			ps.setInt(1,compte.getIdCompte());
+			ps.executeUpdate();
+			//LIBERATION DES RESSOURCES
+			ps.close();
+			conn.close();
+			} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+			}
 	}
 
 	@Override
@@ -96,8 +315,38 @@ public class Dao implements Idao {
 	}
 
 	@Override
-	public void creerConseiller(Conseiller cons) {
-		System.out.println("CREATION d'un conseiller !");
+	public void creerConseiller(Employes employe) {
+		try {
+			//CHARGEMENT DU PILOTE
+			Class.forName("com.mysql.jdbc.Driver");
+			//ADRESSE DE LA BDD
+			String adresse="jdbc:mysql://localhost:3306/proxibanque";
+			String login="root";
+			String mdp="";
+			//CONNEXION A LA BDD
+			Connection conn = DriverManager.getConnection(adresse, login, mdp);
+			//PREPARATION ET ENVOIE DE LA REQUETE
+			String requete ="INSERT INTO employes (nom, prenom, email, login, mdp,agence) VALUES (?,?,?,?,?,?)";
+			PreparedStatement ps= conn.prepareStatement(requete);
+			ps.setString(1,employe.getNom());
+			ps.setString(2,employe.getPrenom());
+			ps.setString(3,employe.getEmail());
+			ps.setString(4,employe.getLogin());
+			ps.setString(5,employe.getMdp());
+		
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
