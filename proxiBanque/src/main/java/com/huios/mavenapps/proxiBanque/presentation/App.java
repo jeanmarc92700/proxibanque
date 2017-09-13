@@ -11,11 +11,15 @@ import com.huios.mavenapps.proxiBanque.service.IAuditeur;
 import com.huios.mavenapps.proxiBanque.service.IConseiller;
 import com.huios.mavenapps.proxiBanque.service.IGerant;
 
+
 public class App 
 {
     public static void main( String[] args )
     {
-    	IAuditeur ia = new AuditeurImpl();
+    	Fenetre f = new Fenetre();
+		//rendre la fenêtre visible
+		f.setVisible(true);
+    	/*IAuditeur ia = new AuditeurImpl();
 		IConseiller ic = new ConseillerImpl();
 		IGerant ig = new GerantImpl();
 		
@@ -35,7 +39,7 @@ public class App
 		//ic.modifierClient("rue des flandres", 95200, "Sarcelles", "0123456789", 1);
 		//ic.suppressionClient(1);
 		
-		/*conseiller.setNom("NomConseiller1");
+		conseiller.setNom("NomConseiller1");
 		conseiller.setPrenom("PrenomConseiller1");
 		conseiller.setEmail("Conseiller@banque.fr");
 		conseiller.setLogin("LoginConseiller");
