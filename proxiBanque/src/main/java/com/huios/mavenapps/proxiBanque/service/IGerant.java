@@ -4,7 +4,7 @@ import com.huios.mavenapps.proxiBanque.metier.Agence;
 import com.huios.mavenapps.proxiBanque.metier.Conseiller;
 import com.huios.mavenapps.proxiBanque.metier.Employes;
 
-public interface IGerant {
+public interface IGerant extends IConseiller {
 	
 	public void suppressionConseiller(Conseiller conseiller);
 	public void creerConseiller(Employes employe);

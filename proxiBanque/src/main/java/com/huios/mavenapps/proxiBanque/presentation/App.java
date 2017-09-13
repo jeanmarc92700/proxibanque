@@ -16,10 +16,10 @@ public class App
 {
     public static void main( String[] args )
     {
-    	Fenetre f = new Fenetre();
-		//rendre la fenêtre visible
-		f.setVisible(true);
-    	/*IAuditeur ia = new AuditeurImpl();
+    	
+    	//Fenetre f = new Fenetre();
+		//f.setVisible(true);
+    	IAuditeur ia = new AuditeurImpl();
 		IConseiller ic = new ConseillerImpl();
 		IGerant ig = new GerantImpl();
 		
@@ -27,7 +27,7 @@ public class App
 		Compte compte = new Compte();
 		Conseiller conseiller = new Conseiller();
 		
-		//******************CLIENT**********************
+		//******************CRUD CLIENT**********************
 		client.setNom("VEN");
 		client.setPrenom("Bava");
 		client.setAdresse("11, rue Saint Maur");
@@ -39,13 +39,19 @@ public class App
 		//ic.modifierClient("rue des flandres", 95200, "Sarcelles", "0123456789", 1);
 		//ic.suppressionClient(1);
 		
-		conseiller.setNom("NomConseiller1");
-		conseiller.setPrenom("PrenomConseiller1");
-		conseiller.setEmail("Conseiller@banque.fr");
-		conseiller.setLogin("LoginConseiller");
-		conseiller.setMdp("1234");
-		conseiller.setIdEmployes(idEmployes);
-		ig.creerConseiller(employe);*/
-		
+		//***********CRUD COMPTE***********************
+		compte.setDateOuverture("130917");
+		compte.setSolde(1000);
+		compte.setNumCompte(32);
+		compte.setClient(client);
+		//ic.creerCompte(compte);
+		//System.out.println(ic.lireCompte(8));
+		//ic.lireCompte(8);
+		//ic.modifierCompte(8,500);
+		ic.suppressionCompte(8);
+		//***************ATTRIBUTION DU COMPTE AU CLIENT*****************
+		/*client.setIdClient(3);
+		compte.setIdCompte(8);
+		ic.attribuerCompte(client,compte);*/
     }
 }

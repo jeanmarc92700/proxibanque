@@ -72,24 +72,24 @@ public class ConseillerImpl implements IConseiller{
 	 * La m�thode lireCompte permet de lire les informations du compte client dans la base de donn�es
 	 */
 	@Override
-	public void lireCompte(Compte compte) {
-		dao.lireCompte(compte);
+	public Compte lireCompte(int idCompte) {
+		return dao.lireCompte(idCompte);
 	}
 	
 	/**
 	 * La m�thode modifierCompte permet de modifier les informations du compte dans la base de donn�es
 	 */
 	@Override
-	public void modifierCompte(Compte compte) {
-		dao.modifierCompte(compte);
+	public void modifierCompte(int idCompte, float solde) {
+		dao.modifierCompte(idCompte, solde);
 	}
 	
 	/**
 	 * La m�thode suppressionCompte permet de supprimer un compte client de la base de donn�es
 	 */
 	@Override
-	public void suppressionCompte(Compte compte) {
-		dao.suppressionCompte(compte);
+	public void suppressionCompte(int idCompte) {
+		dao.suppressionCompte(idCompte);
 	}
 	
 	/**
@@ -150,6 +150,18 @@ public class ConseillerImpl implements IConseiller{
 	@Override
 	public void gestionPatrimoine(Compte compte) {
 		dao.gestionPatrimoine(compte);
+	}
+
+	@Override
+	public int getIdClient(Client client) {
+		// TODO Auto-generated method stub
+		return dao.getIdClient(client);
+	}
+
+	@Override
+	public void attribuerCompte(Client client, Compte compte) {
+		dao.attribuerCompte(client, compte);
+		
 	}
 
 }

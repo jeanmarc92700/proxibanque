@@ -16,9 +16,9 @@ public interface IConseiller {
 	
 	//COMPTE
 	public void creerCompte(Compte compte);
-	public void lireCompte(Compte compte);
-	public void modifierCompte(Compte compte);
-	public void suppressionCompte(Compte compte);
+	public Compte lireCompte(int idCompte);
+	public void modifierCompte(int idCompte, float solde);
+	public void suppressionCompte(int idCompte);
 	public void choixCarte(Compte compte);
 	public void ajouterCarte(Compte compte);
 	public void suppressionCarte(Compte compte);
@@ -26,6 +26,11 @@ public interface IConseiller {
 	public void simCreditImmo(Compte compte);
 	public void simCreditConso(Compte compte);
 	public void gestionPatrimoine(Compte compte);
+	public int getIdClient(Client client);
+	public void attribuerCompte(Client client, Compte compte);
+	
+	
+	
 	
 	
 	

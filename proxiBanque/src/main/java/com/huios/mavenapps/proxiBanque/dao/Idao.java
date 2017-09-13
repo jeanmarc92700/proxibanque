@@ -21,9 +21,9 @@ public interface Idao {
 	//Gestion des Comptes
 	
 	public void creerCompte(Compte compte);
-	public void lireCompte(Compte compte);
-	public void modifierCompte(Compte compte);
-	public void suppressionCompte(Compte compte);
+	public Compte lireCompte(int idCompte);
+	public void modifierCompte(int idCompte, float solde);
+	public void suppressionCompte(int idCompte);
 	public void choixCarte(Compte compte);
 	public void ajouterCarte(Compte compte);
 	public void suppressionCarte(Compte compte);
@@ -41,6 +41,12 @@ public interface Idao {
 	public void modifierConseiller(Conseiller conseiller);
 	public void suppressionConseiller(Conseiller conseiller);
 	public void ajouteremployes(Employes e, Agence a);
+	public int getIdClient(Client client);
+	public void attribuerCompte(Client client, Compte compte);
+	
+	
+	
+	
 	
 	
 	
