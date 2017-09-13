@@ -17,9 +17,9 @@ public class App
     public static void main( String[] args )
     {
     	
-    	//Fenetre f = new Fenetre();
-		//f.setVisible(true);
-    	IAuditeur ia = new AuditeurImpl();
+    	Fenetre f = new Fenetre();
+		f.setVisible(true);
+    	/*IAuditeur ia = new AuditeurImpl();
 		IConseiller ic = new ConseillerImpl();
 		IGerant ig = new GerantImpl();
 		

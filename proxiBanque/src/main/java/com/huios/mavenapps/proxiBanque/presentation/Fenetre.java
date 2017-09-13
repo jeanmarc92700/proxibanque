@@ -86,8 +86,8 @@ public class Fenetre extends JFrame{
 	private JButton bouton2 = new JButton("valider");
 	
 	//Modifier compte dans gerant
-	private JLabel modifiernumero = new JLabel("numero");
-	private JTextField entrermodifiernumero = new JTextField (10) ;
+	private JLabel modifierid = new JLabel("id");
+	private JTextField entrermodifierid = new JTextField (10) ;
 	private JLabel modifiersolde = new JLabel("solde");
 	private JTextField entrermodifiersolde = new JTextField (10);
 	private JLabel modifdate = new JLabel ("date");
@@ -95,8 +95,8 @@ public class Fenetre extends JFrame{
 	private JButton bouton3 = new JButton("valider");
 	
 	//Supprimer compte dans gerant
-	private JLabel numerocompte4 = new JLabel ("numero du compte");
-	private JTextField entrernumero4 = new JTextField (10);
+	private JLabel numeroid = new JLabel ("id");
+	private JTextField entrernumeroid = new JTextField (10);
 	private JButton bouton4 = new JButton("valider");
 	
 	//Creer client dans gerant
@@ -164,7 +164,7 @@ public class Fenetre extends JFrame{
 		
 		//Creeer conseiller
 		
-		ongletCreerConseiller.add (idEmployes);
+		/*ongletCreerConseiller.add (idEmployes);
 		ongletCreerConseiller.add (entrerIdEmployes)  ;	
 		ongletCreerConseiller.add (nomEmployes) ;
 		ongletCreerConseiller.add (entrerNomEmployes); 
@@ -189,7 +189,7 @@ public class Fenetre extends JFrame{
 				entrerdate.setText("");
 				
 			}
-		});
+		});*/
 		
 		//Creer compte dans gerant
 		ongletCreerCompte.add(numero);
@@ -205,7 +205,7 @@ public class Fenetre extends JFrame{
 		
 				Compte c = new Compte();
 				c.setNumCompte(Integer.parseInt (entrernumero.getText()));
-				c.setSolde(Integer.parseInt (entrersolde.getText()));
+				c.setSolde(Float.parseFloat (entrersolde.getText()));
 				c.setDateOuverture(entrerdate.getText());
 				con.creerCompte(c);
 				entrernumero.setText("");
@@ -226,7 +226,7 @@ public class Fenetre extends JFrame{
 		
 				Compte c = new Compte();
 				//c.setNumCompte(Integer.parseInt (entrernumero2.getText()));
-				con.lireCompte(Integer.parseInt (entrenumero2.getText()));;
+				con.lireCompte(Integer.parseInt (entrernumero2.getText()));;
 				//List <Compte> comptes = new ArrayList <Compte>();
 				//for (Compte c1 : 10) {
 				//	System.out.println(c);
@@ -238,8 +238,8 @@ public class Fenetre extends JFrame{
 		});
 		
 		//Modifier compte dans gerant
-		ongletModifierCompte.add(modifiernumero);
-		ongletModifierCompte.add(entrermodifiernumero);
+		ongletModifierCompte.add(modifierid);
+		ongletModifierCompte.add(entrermodifierid);
 		ongletModifierCompte.add(modifiersolde );
 		ongletModifierCompte.add(entrermodifiersolde);
 		ongletModifierCompte.add(modifdate);
@@ -249,30 +249,26 @@ public class Fenetre extends JFrame{
 		bouton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
-				Compte c = new Compte();
-				c.setNumCompte(Integer.parseInt (entrermodifiernumero.getText()));
-				c.setSolde(Integer.parseInt (entrermodifiersolde.getText()));
-				c.setDateOuverture(entrermodifierdate.getText());
-				con.modifierCompte(c);
-				entrermodifiernumero.setText("");
+				
+				con.modifierCompte((Integer.parseInt (entrermodifierid.getText())),(Float.parseFloat (entrermodifiersolde.getText())));
+				entrermodifierid.setText("");
 				entrermodifiersolde.setText("");
-				entrermodifierdate.setText("");
 				
 			}
 		});
 		
 		//supprimer compte dans gerant
-		ongletSupprimerCompte.add(numerocompte4);
-		ongletSupprimerCompte.add(entrernumero4);
+		ongletSupprimerCompte.add(numeroid);
+		ongletSupprimerCompte.add(entrernumeroid);
 		ongletSupprimerCompte.add(bouton4);
 		
 		bouton4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
 				Compte c = new Compte();
-				c.setNumCompte(Integer.parseInt (entrernumero4.getText()));
-				con.suppressionCompte(c);
-				entrernumero4.setText("");
+				//c.setNumCompte(Integer.parseInt (entrernumero4.getText()));
+				con.suppressionCompte(Integer.parseInt (entrernumeroid.getText()));
+				entrernumeroid.setText("");
 				
 			}
 		});
@@ -332,10 +328,6 @@ public class Fenetre extends JFrame{
 		//Modifier client dans gerant
 		ongletModifierClient.add (id3);
 		ongletModifierClient.add (entrerid3);
-		ongletModifierClient.add (nom2); 
-		ongletModifierClient.add (entrernom2); 
-		ongletModifierClient.add (prenom2); 
-		ongletModifierClient.add (entrerprenom2); 
 		ongletModifierClient.add (adresse2);
 		ongletModifierClient.add (entreraddresse2);
 		ongletModifierClient.add (codepostal2); 
@@ -349,21 +341,19 @@ public class Fenetre extends JFrame{
 		bouton7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
-				/*Client c = new Client();
-				c.setIdClient(Integer.parseInt (entrerid3.getText()));
-				c.setNom(entrernom2.getText());
-				c.setPrenom(entrerprenom2.getText());
-				c.setAdresse(entreraddresse2.getText());
-				c.setCodePostal(Integer.parseInt (entrercodepostal2.getText()));
-				c.setVille(entrerville2.getText());
-				c.setTelephone(entrertelephone2.getText());
-				con.modifierClient("entreraddresse2", entrercodepostal2 ,"entrerville2", "telephone", 2);;
+				Client c = new Client();
+				//c.setIdClient(Integer.parseInt (entrerid3.getText()));
+				//c.setAdresse(entreraddresse2.getText());
+				//c.setCodePostal(Integer.parseInt (entrercodepostal2.getText()));
+				//c.setVille(entrerville2.getText());
+				//c.setTelephone(entrertelephone2.getText());
+				con.modifierClient(entreraddresse2.getText(),Integer.parseInt (entrercodepostal2.getText()),entrerville2.getText(),entrertelephone2.getText(),Integer.parseInt (entrerid3.getText()));;
 				entrerid3.setText("");
 				entrernom2.setText("");
 				entrerprenom2.setText("");
 				entrercodepostal2.setText("");
 				entrerville2.setText("");
-				entrertelephone2.setText("");*/
+				entrertelephone2.setText("");
 				
 			}
 		});
